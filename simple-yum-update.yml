@@ -1,0 +1,23 @@
+---
+#  Example patching a RHEL VM Guest
+#
+#  Outline:
+#    1.  Patch RHEL Guest
+#    2.  Run the ping module to check if alive
+#
+- name: Update all available packages with yum
+  hosts: all
+  remote_user: ansibleop
+  become: yes
+
+  tasks:
+    - name: Install the latest patches allowed by the Content View
+      yum:
+        name: '*'
+        state: latest
+      register: yum_update
+
+    - name: Invoke Ping module on the host to verify that it is up
+      ping:
+
+...

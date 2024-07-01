@@ -1,0 +1,11 @@
+---
+- name: Run the Ansible Ping module on a host
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: ping module
+      ansible.builtin.ping:
+
+    - name: pause to observe pods
+      ansible.builtin.pause:
+        seconds: 60

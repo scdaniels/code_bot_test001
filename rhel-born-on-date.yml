@@ -1,0 +1,21 @@
+---
+#  Get the RHEL born on date
+#
+- name: View RHEL born on date
+  hosts: all
+  # remote_user: ansibleop
+  become: yes
+
+  tasks:
+    - name: Query the RHEL born on date
+      ansible.builtin.shell: "rpm -qi basesystem | grep '^Install Date'"
+      args:
+        warn: false
+      register: bornOnDate
+      changed_when: false
+        
+    - name: Display the born on date
+      ansible.builtin.debug:
+        var: bornOnDate.stdout
+      
+...
